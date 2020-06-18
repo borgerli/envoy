@@ -37,7 +37,7 @@ public:
     EXPECT_TRUE(response->complete());
     EXPECT_EQ("200", response->headers().getStatusValue());
     ASSERT_TRUE(response->headers().ContentEncoding() != nullptr);
-    EXPECT_EQ(Http::Headers::get().ContentEncodingValues.Gzip,
+    EXPECT_EQ(Http::CustomHeaders::get().ContentEncodingValues.Gzip,
               response->headers().getContentEncodingValue());
     ASSERT_TRUE(response->headers().TransferEncoding() != nullptr);
     EXPECT_EQ(Http::Headers::get().TransferEncodingValues.Chunked,

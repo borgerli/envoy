@@ -13,6 +13,8 @@ namespace Envoy {
 //
 // Instead, set the value early and regression test the bootstrap proto's validation of prefix
 // injection.
+Http::RegisterCustomInlineHeader<Http::CustomInlineHeaderRegistry::Type::RequestHeaders>
+    cache_control_handle(Http::CustomHeaders::get().CacheControl);
 
 static const char* custom_prefix_ = "x-custom";
 

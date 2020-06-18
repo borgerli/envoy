@@ -36,10 +36,10 @@ public:
     EXPECT_EQ(0U, upstream_request_->bodyLength());
     EXPECT_TRUE(response->complete());
     EXPECT_EQ("200", response->headers().getStatusValue());
-    EXPECT_EQ(Http::Headers::get().ContentEncodingValues.Gzip,
-              response->headers().getContentEncodingValue());
+    EXPECT_EQ(Http::CustomHeaders::get().ContentEncodingValues.Gzip,
+              response->headers().get_("content-encoding"));
     EXPECT_EQ(Http::Headers::get().TransferEncodingValues.Chunked,
-              response->headers().getTransferEncodingValue());
+              response->headers().get_("transfer-encoding"));
 
     Buffer::OwnedImpl decompressed_response{};
     const Buffer::OwnedImpl compressed_response{response->body()};

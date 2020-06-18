@@ -587,7 +587,7 @@ TEST_P(IntegrationTest, TestInlineHeaders) {
       reinterpret_cast<AutonomousUpstream*>(fake_upstreams_.front().get())->lastRequestHeaders();
   ASSERT_TRUE(upstream_headers != nullptr);
   EXPECT_EQ(upstream_headers->Host()->value(), "foo.com");
-  EXPECT_EQ(upstream_headers->CacheControl()->value(), "public,123");
+  EXPECT_EQ(upstream_headers->get_("cache-control"), "public,123");
   ASSERT_TRUE(upstream_headers->get(Envoy::Http::LowerCaseString("foo")) != nullptr);
   EXPECT_EQ("bar",
             upstream_headers->get(Envoy::Http::LowerCaseString("foo"))->value().getStringView());
